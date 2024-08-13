@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Main\QppointController;
 use App\Http\Controllers\Main\QuestionController;
 use App\Http\Controllers\Main\ScoreController;
@@ -15,6 +16,8 @@ Route::middleware("auth:sanctum")->group(function (){
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+
+    Route::get("/signout", [AuthController::class, "signOut"]);
 });
 
 
@@ -45,3 +48,6 @@ Route::prefix("/scores")->group(function (){
    Route::get("/{id}", [ScoreController::class, "getScores"]);
    Route::post("/", [ScoreController::class, "createScores"]); 
 });
+
+    Route::post("/signin", [AuthController::class, "signIn"]);
+    Route::post("/signup", [AuthController::class, "signUp"]);
