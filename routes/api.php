@@ -41,7 +41,8 @@ Route::middleware("auth:sanctum")->group(function (){
     // Scores Routes
     Route::prefix("/scores")->group(function (){
     Route::get("/", [ScoreController::class, "getScores"]);
-    Route::get("/{id}", [ScoreController::class, "getScores"]);
+    Route::get("/{id}", [ScoreController::class, "getScore"]);
+    Route::put("/{id}", [ScoreController::class, "updateScore"]);
     Route::post("/", [ScoreController::class, "createScores"]); 
     });
 
