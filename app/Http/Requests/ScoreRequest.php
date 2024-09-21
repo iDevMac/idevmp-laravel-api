@@ -22,9 +22,10 @@ class ScoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "user_id" => "required|numeric",
             "video_id" => "required|numeric",
             "score" => "required|numeric",
+            "scored" => "required",
+            "percentage" => "required|numeric",
             "active" => "required|string",
         ];
     }

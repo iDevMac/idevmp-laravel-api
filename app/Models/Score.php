@@ -13,6 +13,8 @@ class Score extends Model
         "user_id",
         "video_id",
         "score",
+        "scored",
+        "percentage",
         "active"
     ];
 }

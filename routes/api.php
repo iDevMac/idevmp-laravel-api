@@ -33,17 +33,17 @@ Route::middleware("auth:sanctum")->group(function (){
 
     // Qppoints Routes
     Route::prefix("/qppoints")->group(function (){
-    Route::get("/", [QppointController::class, "getQppoints"]); 
-    Route::get("/{id}", [QppointController::class, "getQppoints"]);
-    Route::post("/", [QppointController::class, "createQppoints"]);
+        Route::get("/", [QppointController::class, "getQppoints"]); 
+        Route::get("/{id}", [QppointController::class, "getQppoints"]);
+        Route::post("/", [QppointController::class, "createQppoints"]);
     });
 
     // Scores Routes
     Route::prefix("/scores")->group(function (){
-    Route::get("/", [ScoreController::class, "getScores"]);
-    Route::get("/{id}", [ScoreController::class, "getScore"]);
-    Route::put("/{id}", [ScoreController::class, "updateScore"]);
-    Route::post("/", [ScoreController::class, "createScores"]); 
+        Route::get("/", [ScoreController::class, "getScores"]);
+        Route::get("/{id}", [ScoreController::class, "getScore"]);
+        Route::put("/{id}", [ScoreController::class, "updateScore"]);
+        Route::post("/", [ScoreController::class, "createScores"]); 
     });
 
     Route::get("/signout", [AuthController::class, "signOut"]);
