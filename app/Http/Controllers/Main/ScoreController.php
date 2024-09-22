@@ -58,6 +58,7 @@ class ScoreController extends Controller
         
         try {
             //code...
+            // $data["user_id"] = Auth::user()->id;
             $data = $request->validate([
                 "user_id" => "required|numeric",
                 "video_id" => "required|numeric",
@@ -66,26 +67,17 @@ class ScoreController extends Controller
                 "percentage" => "required|numeric",
                 "active" => "string"
             ]);
-    
-    
-            $score = Score::where([ "user_id" => $data["user_id"], "video_id" => $data["video_id"] ])->first();
-    
-    
-            if (!empty($score)) {
-                return response("You already have a score for this video.", 403);
-            }
-    
-            $createScore = new Score();
-                $createScore->user_id = $data["user_id"];
-                $createScore->video_id = $data["video_id"];
-                $createScore->score = $data["score"];
-                $createScore->scored = $data["scored"];
-                $createScore->percentage = $data["percentage"];
-                $createScore->active = $data["active"];
-            $createScore->save();
-    
-    
-            return response($createScore, 201);
+
+            $score = Score::firstOrNew([ "user_id" => $data["user_id"], "video_id" => $data["video_id"] ]);
+                $score->user_id = $data["user_id"];
+                $score->video_id = $data["video_id"];
+                $score->score = $data["score"];
+                $score->scored = $data["scored"];
+                $score->percentage = $data["percentage"];
+                $score->active = $data["active"];
+            $score->save();
+
+            return response($score, 201);
 
         } catch (\Throwable $th) {
             throw $th;
